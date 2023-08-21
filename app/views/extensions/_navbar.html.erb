@@ -33,20 +33,29 @@
                     </button>
                     <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                         <div class="navbar-nav ms-auto mx-xl-auto p-0">
-                            <a href="index.html" class="nav-item nav-link active text-secondary">Home</a>
-                            <a href="about.html" class="nav-item nav-link">About</a>
-                            <a href="service.html" class="nav-item nav-link">Services</a>
-                            <a href="project.html" class="nav-item nav-link">Projects</a>
+                            <%= link_to 'Home', root_path ,class: "nav-item nav-link" %>
+                            <% if user_signed_in? %>
+                                <%= current_user.email %>
+                                <%= link_to 'Log Out', destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-item nav-link" %>
+                                <%= link_to 'Account Settings', edit_user_registration_path, class: "nav-item nav-link" %>
+                                <%= link_to 'About', about_path ,class: "nav-item nav-link" %>
+                                <%= link_to 'Services', services_path , class: "nav-item nav-link" %>
+                                <%= link_to 'Projects', projects_path ,class: "nav-item nav-link" %>
+                            <% else %>
+                                <%= link_to 'Log In', new_user_session_path, class:"nav-item nav-link" %>
+                                <%= link_to 'Sign Up', new_user_registration_path, class:"nav-item nav-link" %>
+                            <% end %>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu rounded">
-                                    <a href="blog.html" class="dropdown-item">Our Blog</a>
-                                    <a href="team.html" class="dropdown-item">Our Team</a>
-                                    <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                    <a href="404.html" class="dropdown-item">404 Page</a>
+                                    <div class="dropdown-menu rounded">
+                                        <a href="blog.html" class="dropdown-item">Our Blog</a>
+                                        <a href="team.html" class="dropdown-item">Our Team</a>
+                                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                                        <a href="404.html" class="dropdown-item">404 Page</a>
+                                    </div>
                                 </div>
-                            </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            
                         </div>
                     </div>
                     <div class="d-none d-xl-flex flex-shirink-0">
@@ -60,6 +69,7 @@
                         </div>
                         <div class="d-flex flex-column pe-4 border-end">
                             <span class="text-white-50">Have any questions?</span>
+
                             <span class="text-secondary">Call: + 0123 456 7890</span>
                         </div>
                         <div class="d-flex align-items-center justify-content-center ms-4 ">

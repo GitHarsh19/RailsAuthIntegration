@@ -3,4 +3,10 @@ class HomeController < ApplicationController
   end
   def login
   end
+  def about
+  end
+  def projects
+  end
+  def services
+  end
 end
